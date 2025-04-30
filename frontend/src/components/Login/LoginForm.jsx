@@ -1,5 +1,5 @@
-// src/components/Login/LoginForm.jsx
 import React from "react";
+import { Link } from "react-router-dom";  // Import Link from React Router
 import InputField from "./InputField";
 import EyeIcon from "./EyeIcon";
 import SocialButton from "./SocialButton";
@@ -13,10 +13,13 @@ const LoginForm = () => (
             Forget Password?
         </div>
         <button className="w-full py-2 bg-indigo-600 text-white rounded mb-4">
-            Sign in
+            Log In
         </button>
         <div className="text-sm text-center mb-4">
-            Don’t have an account? <span className="text-indigo-600 cursor-pointer">Sign up</span>
+            Don’t have an account?{" "}
+            <Link to="/signup" className="text-indigo-600 cursor-pointer">
+                Sign Up
+            </Link>
         </div>
         <div className="flex items-center mb-4">
             <hr className="flex-grow border-gray-300" />
