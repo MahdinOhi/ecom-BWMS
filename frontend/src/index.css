@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Tilt+Neon&display=swap');
+
+body {
+    font-family: 'Monstserrat', monospace;
+}
+
+.text-transparent-stroke {
+    color: transparent;
+    background-image: linear-gradient(to right, #fff, #fff);
+    /* White gradient for stroke effect */
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    /* Blurred shadow effect */
+    font-weight: bold;
+}
