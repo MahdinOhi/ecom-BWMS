@@ -2,6 +2,8 @@ import react from "react";
 import InputField from "../Login/InputField";
 import EyeIcon from "../Login/EyeIcon";
 import { Link } from "react-router-dom"; // Import Link from React Router
+import RightsText from "../RightsText";
+
 
 const SignUpForm = () => (
 
@@ -30,9 +32,7 @@ const SignUpForm = () => (
                 Log In
             </Link>
         </div>
-        <p className="text-xs text-center text-gray-400 mt-6">
-            All rights reserved © BroWheresMyStuff.
-        </p>
+        <RightsText />
     </div>
 );
 

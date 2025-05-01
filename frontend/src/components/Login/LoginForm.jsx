@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";  // Import Link from React Router
 import InputField from "./InputField";
 import EyeIcon from "./EyeIcon";
 import SocialButton from "./SocialButton";
+import RightsText from "../RightsText";
 
 const LoginForm = () => (
     <div className="p-8 w-full max-w-md">
@@ -10,7 +11,7 @@ const LoginForm = () => (
         <InputField type="text" placeholder="Email Address or Phone Number" />
         <InputField type="password" placeholder="Password" icon={<EyeIcon />} />
         <div className="text-sm text-right mb-4 text-gray-500 cursor-pointer">
-            Forget Password?
+            <Link to="/forgotpass">Forget Password?</Link> {/* Link to forgot password route */}
         </div>
         <button className="w-full py-2 bg-indigo-600 text-white rounded mb-4">
             Log In
@@ -29,9 +30,7 @@ const LoginForm = () => (
         <div className="flex justify-center">
             <SocialButton icon={<span className="text-red-500">G</span>} />
         </div>
-        <p className="text-xs text-center text-gray-400 mt-6">
-            All rights reserved © BroWheresMyStuff.
-        </p>
+        <RightsText />
     </div>
 );
 
