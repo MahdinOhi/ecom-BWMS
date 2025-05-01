@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import AuthCardContainer from './AuthCardContainer';
 
 function Signup() {
     const [message, setMessage] = useState('');
@@ -17,9 +18,12 @@ function Signup() {
     }, []);
 
     return (
-        <div className="flex justify-center items-center h-screen">
-            <h1 className="text-red-600 text-xl font-semibold">{message}</h1>
-        </div>
+        <div
+        className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-800 to-purple-900 bg-no-repeat bg-cover bg-center"
+        style={{ backgroundImage: "url('/img/auth/LoginBG.png')" }}
+    >
+        <AuthCardContainer />
+    </div>
     );
 
 }
