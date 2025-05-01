@@ -1,5 +1,5 @@
 import react from "react";
-import SignUpForm from "./SignUpForm";
+import SignUpForm from "./SignupForm";
 import IllustrationPanel from "../Login/IllustrationPanel";
 
 const AuthCardContainer = () => (

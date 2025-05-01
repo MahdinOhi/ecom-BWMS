@@ -3,7 +3,7 @@ import InputField from "../Login/InputField";
 import EyeIcon from "../Login/EyeIcon";
 import { Link } from "react-router-dom"; // Import Link from React Router
 
-const SignUpForm = ()=> (
+const SignUpForm = () => (
 
     <div className="p-8 w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6">Let’s Create Account</h2>
@@ -27,7 +27,7 @@ const SignUpForm = ()=> (
         <div className="text-sm text-center mb-4">
             Already have an account?{" "}
             <Link to="/login" className="text-indigo-600 cursor-pointer">
-                Sign in
+                Log In
             </Link>
         </div>
         <p className="text-xs text-center text-gray-400 mt-6">
