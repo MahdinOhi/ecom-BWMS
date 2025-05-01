@@ -9,6 +9,9 @@ An e-commerce platform built using **Django (Backend)**, **React (Frontend)**, a
 ```
 ECOM-BWMS/
 │
+├── runserver.sh # Shell script to run the server
+├── runserver.ps1 # Shell script to run the server
+│
 ├── backend/
 │   ├── api/                 # Django REST API
 │   ├── backend/             # Django settings and core
@@ -47,11 +50,11 @@ ECOM-BWMS/
 ### 🔧 Backend (Django)
 
 ```bash
-cd backend
 python -m venv env
 source env/Scripts/activate    # On Windows use `env\Scripts\activate`
+cd backend
 pip install -r requirements.txt
-python manage.py migrate
+python manage.py migrate # only if database changes
 python manage.py runserver
 ```
 
@@ -59,8 +62,26 @@ python manage.py runserver
 
 ```bash
 cd frontend
-npm install
-npm run dev    # Or: npm start
+npm install # if not already installed
+npm run dev
+```
+
+### For run by builder
+
+#### For Windows
+
+```bash
+## Allow script executions ONLY IF NEEDED
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+Press "Y" if prompted.
+.\runserver.ps1 # run this to run the whole server
+```
+
+#### For linux & Mac
+
+```bash
+chmod +x runWEB.sh
+./runserver.sh
 ```
 
 ---
@@ -70,8 +91,6 @@ npm run dev    # Or: npm start
 - 📧 [mahdinislamohi@gmail.com](mailto:mahdinislamohi@gmail.com)
 - 📧 [ashrafhossainsohan@gmail.com](mailto:ashrafhossainsohan@gmail.com)
 - 📧 [mehedi90a@gmail.com](mailto:mehedi90a@gmail.com)
-
-
 
 ---
 
