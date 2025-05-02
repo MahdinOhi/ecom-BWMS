@@ -13,10 +13,7 @@ const routes = [
 ];
 
 const LandingPage = () => (
-    <div
-        className="min-h-screen bg-cover bg-center"
-        style={{ backgroundImage: "url('/img/hero/Background.png')" }}
-    >
+    <div>
         <Navbar routes={routes} />
         <Routes>
         </Routes>
