@@ -2,14 +2,16 @@ import { useEffect, useState } from 'react';
 import Logo from '../Logo';
 import NavLinks from './NavLinks';
 import IconButtons from './IconButtons';
+import SearchBar from '../SearchBar';
 
 const Navbar = ({ routes }) => {
     const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 10);
+            setScrolled(window.scrollY > 100);
         };
+
 
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
@@ -23,7 +25,14 @@ const Navbar = ({ routes }) => {
                 }`}
         >
             <Logo />
-            <NavLinks routes={routes} />
+            <div className="flex items-center gap-4">
+                <NavLinks routes={routes} />
+                {scrolled && (
+                    <div className="w-[332px] ml-[30px] animate-fade-in">
+                        <SearchBar />
+                    </div>
+                )}
+            </div>
             <IconButtons />
         </nav>
     );
