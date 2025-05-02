@@ -16,3 +16,9 @@ body {
   /* Blurred shadow effect */
   font-weight: bold;
 }
+
+.stroke-text {
+  -webkit-text-stroke: 1px white;
+  color: transparent;
+  
+}
