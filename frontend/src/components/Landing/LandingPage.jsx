@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import HeroBanner from "./HeroBanner";
 import TagSection from './TagSection';
 import { EmojiEvents, Build, LocalShipping, QuestionAnswer } from '@mui/icons-material';
+import Footer from "../Footer/Footer";
 
 const tags = [
     { icon: EmojiEvents, label: 'Quality', rating: 4.7 },
@@ -28,6 +29,7 @@ const LandingPage = () => (
         </Routes>
         <HeroBanner />
         <TagSection tags={tags} />
+        <Footer />
     </div>
 );
 
