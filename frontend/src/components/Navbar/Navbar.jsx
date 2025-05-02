@@ -17,7 +17,7 @@ const Navbar = ({ routes }) => {
 
     return (
         <nav
-            className={`w-full sticky top-0 z-50 flex justify-between items-center px-8 py-4 transition-all duration-300 ${scrolled
+            className={`w-full h-[115px] sticky top-0 z-50 flex justify-between items-center px-8 transition-all duration-300 ${scrolled
                 ? 'backdrop-blur-md bg-[#431640]/70 border-b border-white/10 shadow-md'
                 : 'bg-transparent'
                 }`}

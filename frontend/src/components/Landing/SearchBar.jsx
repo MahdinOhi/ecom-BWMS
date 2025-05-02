@@ -6,7 +6,7 @@ export default function SearchBar() {
     return (
         <TextField
             fullWidth
-            placeholder="search your dreams........"
+            placeholder="search your dreams..."
             variant="outlined"
             InputProps={{
                 startAdornment: (

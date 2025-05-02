@@ -23,6 +23,7 @@ const Footer = () => {
 
     return (
         <footer className="w-full bg-transparent py-12 text-white">
+            <hr className="border-t border-white/20 mb-10" />
             <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between">
                 {/* Logo and Subscribe Section */}
                 <div className="mb-8 md:mb-0">
