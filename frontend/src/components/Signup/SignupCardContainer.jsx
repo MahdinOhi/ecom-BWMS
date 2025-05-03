@@ -4,10 +4,14 @@ import IllustrationPanel from "../Login/IllustrationPanel";
 
 const AuthCardContainer = () => (
 
-    <div className="flex rounded-3xl overflow-hidden bg-white shadow-[0_0_25px_5px_rgba(128,0,255,0.5)]">
-    <SignUpForm />
-    <IllustrationPanel />
-</div>
+    <div className="flex h-[573px] rounded-3xl overflow-hidden shadow-[0_0_25px_5px_rgba(128,0,255,0.5)]">
+        <div className="bg-white flex-1">
+            <SignUpForm />
+        </div>
+        <div className="bg-white/5 backdrop-blur-sm flex-1">
+            <IllustrationPanel />
+        </div>
+    </div>
 );
 
 export default AuthCardContainer;
