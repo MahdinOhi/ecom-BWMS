@@ -3,8 +3,11 @@ import Navbar from "../Navbar/Navbar";
 import { Routes, Route } from "react-router-dom";
 import HeroBanner from "./HeroBanner";
 import TagSection from './TagSection';
-import { EmojiEvents, Build, LocalShipping, QuestionAnswer } from '@mui/icons-material';
 import Footer from "../Footer/Footer";
+import LazyBackground from "../LazyBackground";
+import { EmojiEvents, Build, LocalShipping, QuestionAnswer } from '@mui/icons-material';
+import FeaturedSection from "./FeaturedSection";
+import PolicySection from "./PolicySection";
 
 const tags = [
     { icon: EmojiEvents, label: 'Quality', rating: 4.7 },
@@ -24,12 +27,17 @@ const routes = [
 
 const LandingPage = () => (
     <div>
-        <Navbar routes={routes} />
-        <Routes>
-        </Routes>
-        <HeroBanner />
-        <TagSection tags={tags} />
-        <Footer />
+        <LazyBackground src="HomePageBackground.webp">
+            <Navbar routes={routes} />
+            <Routes />
+            <HeroBanner />
+            <TagSection tags={tags} />
+            <hr className="border-t border-white/20 mb-10" />
+            <FeaturedSection />
+            <hr className="border-t border-white/20 mb-10" />
+            <PolicySection />
+            <Footer />
+        </LazyBackground>
     </div>
 );
 

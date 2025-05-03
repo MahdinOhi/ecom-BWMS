@@ -8,34 +8,44 @@ const LazyBackground = ({ src, className = '', children, style = {} }) => {
         if (!node) return;
 
         const observer = new IntersectionObserver(
-            ([entry]) => {
+            ([entry], obs) => {
                 if (entry.isIntersecting) {
-                    const bgSrc = node.getAttribute('data-bg-src');
-                    if (bgSrc) {
-                        node.style.backgroundImage = `url(${bgSrc})`;
-                        node.removeAttribute('data-bg-src');
-                    }
-                    observer.unobserve(node);
+                    const webpSrc = node.dataset.bgWebp;
+                    const fallbackSrc = node.dataset.bgFallback;
+                    const img = new Image();
+                    img.src = webpSrc;
+                    img.onload = () => {
+                        node.style.backgroundImage = `url(${webpSrc})`;
+                        node.removeAttribute('data-bg-webp');
+                        node.removeAttribute('data-bg-fallback');
+                    };
+                    img.onerror = () => {
+                        node.style.backgroundImage = `url(${fallbackSrc})`;
+                        node.removeAttribute('data-bg-webp');
+                        node.removeAttribute('data-bg-fallback');
+                    };
+                    obs.unobserve(node);
                 }
             },
-            { threshold: 0.1 }
+            { rootMargin: '200px' }
         );
 
         observer.observe(node);
-
         return () => observer.disconnect();
     }, []);
 
     return (
         <div
             ref={ref}
-            data-bg-src={src}
+            data-bg-webp={`/img/hero/${src}.webp`}
+            data-bg-fallback={`/img/hero/${src}.png`}
             className={className}
             style={{
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
                 minHeight: '100vh',
+                willChange: 'background-image',
                 ...style,
             }}
         >

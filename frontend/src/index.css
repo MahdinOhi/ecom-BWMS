@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Tilt+Neon&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -20,4 +21,8 @@ body {
 .stroke-text {
   -webkit-text-stroke: 1px white;
   color: transparent;
+}
+
+.vic {
+  font-family: "DynaPuff", cursive;
 }
