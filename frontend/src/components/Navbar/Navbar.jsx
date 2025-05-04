@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import Logo from '../Logo';
 import NavLinks from './NavLinks';
-import IconButtons from './IconButtons';
 import SearchBar from '../SearchBar';
+import IconButtons from './IconButtons';
+import { AuthButton } from './AuthButton';
 
 const Navbar = ({ routes }) => {
     const [scrolled, setScrolled] = useState(false);
@@ -12,16 +13,16 @@ const Navbar = ({ routes }) => {
             setScrolled(window.scrollY > 100);
         };
 
-
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     return (
         <nav
-            className={`w-full h-[115px] sticky top-0 z-50 flex justify-between items-center px-8 transition-all duration-300 ${scrolled
-                ? 'backdrop-blur-md bg-[#431640]/70 border-b border-white/10 shadow-md'
-                : 'bg-transparent'
+            className={`w-full h-[115px] sticky top-0 z-50 flex justify-between items-center px-8 transition-all duration-300 
+            ${scrolled
+                    ? 'backdrop-blur-md bg-[#431640]/70 border-b border-white/10 shadow-md'
+                    : 'bg-transparent'
                 }`}
         >
             <Logo />
@@ -33,7 +34,7 @@ const Navbar = ({ routes }) => {
                     </div>
                 )}
             </div>
-            <IconButtons />
+            <AuthButton />
         </nav>
     );
 };
