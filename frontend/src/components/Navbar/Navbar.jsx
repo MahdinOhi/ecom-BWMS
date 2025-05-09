@@ -3,7 +3,6 @@ import Logo from '../Logo';
 import NavLinks from './NavLinks';
 import SearchBar from '../SearchBar';
 import IconButtons from './IconButtons';
-import { AuthButton } from './AuthButton';
 
 const Navbar = ({ routes }) => {
     const [scrolled, setScrolled] = useState(false);
@@ -34,7 +33,7 @@ const Navbar = ({ routes }) => {
                     </div>
                 )}
             </div>
-            <AuthButton />
+            <IconButtons />
         </nav>
     );
 };
