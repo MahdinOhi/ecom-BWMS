@@ -8,6 +8,7 @@ import LazyBackground from "../LazyBackground";
 import { EmojiEvents, Build, LocalShipping, QuestionAnswer } from '@mui/icons-material';
 import FeaturedSection from "./FeaturedSection";
 import PolicySection from "./PolicySection";
+import SaleBanner from "./SaleBanner";
 
 const tags = [
     { icon: EmojiEvents, label: 'Quality', rating: 4.7 },
@@ -36,6 +37,8 @@ const LandingPage = () => (
             <FeaturedSection />
             <hr className="border-t border-white/20 mb-10" />
             <PolicySection />
+            <hr className="border-t border-white/20 mb-10" />
+            <SaleBanner />
             <Footer />
         </LazyBackground>
     </div>
