@@ -6,6 +6,8 @@ import LandingPage from './components/Landing/LandingPage';
 import LoginPage from './components/Login/LoginPage';
 import SignUpPage from './components/Signup/SignUpPage';
 import ForgotPassPage from './components/ForgotPass/ForgotPassPage';
+import ContactPage from './components/Contact/ContactPage';
+//import AboutPage from './components/About/AboutPage';
 
 const App = () => (
   <Router>
@@ -15,6 +17,8 @@ const App = () => (
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/forgotpass" element={<ForgotPassPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+       
       </Route>
     </Routes>
   </Router>
