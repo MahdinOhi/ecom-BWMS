@@ -18,7 +18,6 @@ const App = () => (
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/forgotpass" element={<ForgotPassPage />} />
         <Route path="/contact" element={<ContactPage />} />
-       
       </Route>
     </Routes>
   </Router>

@@ -1,9 +1,7 @@
 import React from "react";
-import Navbar from "../Navbar/Navbar";
-import { Routes, Route } from "react-router-dom";
+import { Routes } from "react-router-dom";
 import HeroBanner from "./HeroBanner";
 import TagSection from './TagSection';
-import Footer from "../Footer/Footer";
 import LazyBackground from "../LazyBackground";
 import { EmojiEvents, Build, LocalShipping, QuestionAnswer } from '@mui/icons-material';
 import FeaturedSection from "./FeaturedSection";
@@ -29,7 +27,6 @@ const routes = [
 const LandingPage = () => (
     <div>
         <LazyBackground src="HomePageBackground.webp">
-            <Navbar routes={routes} />
             <Routes />
             <HeroBanner />
             <TagSection tags={tags} />
@@ -39,7 +36,6 @@ const LandingPage = () => (
             <PolicySection />
             <hr className="border-t border-white/20 mb-10" />
             <SaleBanner />
-            <Footer />
         </LazyBackground>
     </div>
 );
