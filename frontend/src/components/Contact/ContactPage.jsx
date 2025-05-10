@@ -4,7 +4,7 @@ import RightContainer from "./RightContainer";
 
 const ContactPage = () => {
   return (
-    <div className="container mx-auto py-10 px-4 w-[1200px]">
+    <div className="container mx-auto py-10 px-4 w-[1200px] ">
       <GlassCard>
         <div className="relative w-full flex flex-col md:flex-row">
           {/* White Background Container */}
