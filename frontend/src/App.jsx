@@ -19,7 +19,6 @@ const App = () => (
         <Route path="/forgotpass" element={<ForgotPassPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about" element={<AboutPage />} />
-       
       </Route>
     </Routes>
   </Router>
