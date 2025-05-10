@@ -31,8 +31,9 @@ const ContactForm = () => {
                 <textarea
                     placeholder="Describe your thoughts..."
                     rows="4"
-                    className="w-full bg-gray-100 rounded-md p-3 text-gray-800 placeholder-gray-500 border border-gray-200 text-sm"
+                    className="w-full bg-gray-100 rounded-md p-3 text-gray-800 placeholder-gray-500 border border-gray-200 text-sm resize-none"
                 ></textarea>
+
             </div>
 
             <button
