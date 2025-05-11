@@ -1,4 +1,3 @@
-import React from "react";
 import { Routes } from "react-router-dom";
 import HeroBanner from "./HeroBanner";
 import TagSection from './TagSection';
@@ -7,6 +6,7 @@ import { EmojiEvents, Build, LocalShipping, QuestionAnswer } from '@mui/icons-ma
 import FeaturedSection from "./FeaturedSection";
 import PolicySection from "./PolicySection";
 import SaleBanner from "./SaleBanner";
+import FeedbackSection from "./FeedBackSection";
 
 const tags = [
     { icon: EmojiEvents, label: 'Quality', rating: 4.7 },
@@ -25,7 +25,7 @@ const routes = [
 ];
 
 const LandingPage = () => (
-    <div>
+    <div className="overflow-x-hidden">
         <LazyBackground src="HomePageBackground.webp">
             <Routes />
             <HeroBanner />
@@ -34,8 +34,8 @@ const LandingPage = () => (
             <FeaturedSection />
             <hr className="border-t border-white/20 mb-10" />
             <PolicySection />
-            <hr className="border-t border-white/20 mb-10" />
             <SaleBanner />
+            <FeedbackSection />
         </LazyBackground>
     </div>
 );
