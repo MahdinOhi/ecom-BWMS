@@ -34,7 +34,7 @@ const AboutPage = () => {
               </div>
 
               {/* Logo - Positioned at Top Right */}
-              <div className="absolute right-8 top-12">
+              <div className="absolute right-8 top-5">
                 <div className="relative">
                   <img
                     src={Logo}
@@ -50,7 +50,7 @@ const AboutPage = () => {
             </div>
 
             {/* Product Image - Positioned to Overlap White and Purple Sections */}
-            <div className="absolute left-20 bottom-40 z-10 mt-40">
+            <div className="absolute left-9 bottom-36 z-10 mt-40">
               <img
                 src={BagImg}
                 alt="Fashion Bag"
