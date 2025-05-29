@@ -8,6 +8,7 @@ import SignUpPage from './components/Signup/SignUpPage';
 import ForgotPassPage from './components/ForgotPass/ForgotPassPage';
 import ContactPage from './components/Contact/ContactPage';
 import AboutPage from './components/About/AboutPage';
+import ShopPage from './components/Shop/ShopPage';
 
 const App = () => (
   <Router>
@@ -15,6 +16,7 @@ const App = () => (
       <Route element={<Layout />}>
         <Route path="*" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/shop" element={<ShopPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/forgotpass" element={<ForgotPassPage />} />
         <Route path="/contact" element={<ContactPage />} />
