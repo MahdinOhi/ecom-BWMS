@@ -1,13 +1,17 @@
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import ProductCategoriesSection from './ProductCategoriesSection';
-/*import FeaturedProductsSection from './FeaturedProductsSection';
-import SaleBanner from '../Landing/SaleBanner';*/
+import FeaturedProductsSection from './FeaturedProductsSection';
+import SaleBanner from '../Landing/SaleBanner';
 
 const ShopPage = () => {
+
+  const navigate = useNavigate();
+  
   const handleCategoryClick = (categoryId, categoryName) => {
     console.log(`Navigating to category: ${categoryName} (ID: ${categoryId})`);
-    // You can implement navigation logic here
+    navigate(`/shop/category/${categoryId}?name=${encodeURIComponent(categoryName)}`);
    
   };
 

@@ -12,7 +12,7 @@ const ProductCard = ({
     fabrics,
 }) => {
     return (
-        <div className="w-72 rounded-xl p-4 shadow-lg backdrop-blur-lg bg-black/20 border border-white/20">
+        <div className="w-96 rounded-xl p-4 shadow-[0_0_20px_5px_rgba(128,0,255,0.5)] backdrop-blur-sm bg-white/5 ">
             <img
                 src={image}
                 alt={name}
