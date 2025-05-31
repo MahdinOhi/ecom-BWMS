@@ -9,6 +9,7 @@ import ForgotPassPage from './components/ForgotPass/ForgotPassPage';
 import ContactPage from './components/Contact/ContactPage';
 import AboutPage from './components/About/AboutPage';
 import ShopPage from './components/Shop/ShopPage';
+import PolicySection from './components/Landing/PolicySection';
 
 const App = () => (
   <Router>
@@ -21,6 +22,7 @@ const App = () => (
         <Route path="/forgotpass" element={<ForgotPassPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/privacy-policy" element={<PolicySection />} />
       </Route>
     </Routes>
   </Router>
