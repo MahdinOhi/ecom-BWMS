@@ -9,11 +9,9 @@ import ForgotPassPage from './components/ForgotPass/ForgotPassPage';
 import ContactPage from './components/Contact/ContactPage';
 import AboutPage from './components/About/AboutPage';
 import ShopPage from './components/Shop/ShopPage';
-<<<<<<< HEAD
 import ProductPage from './components/Product/ProductPage';
-=======
 import PolicySection from './components/Landing/PolicySection';
->>>>>>> ff938e23e164f1553c624df93cb341d31b37724e
+import EmptyCart from './components/Cart/EmptyCart';
 
 const App = () => (
   <Router>
@@ -28,6 +26,7 @@ const App = () => (
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/privacy-policy" element={<PolicySection />} />
+        <Route path="/empty-cart" element={<EmptyCart />} />
       </Route>
     </Routes>
   </Router>
