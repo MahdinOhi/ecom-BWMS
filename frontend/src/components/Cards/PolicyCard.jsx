@@ -7,7 +7,7 @@ export default function PolicyCard({ number, title, description }) {
             <PolicyIcon number={number} />
             <div>
                 <h3 className="text-lg font-semibold text-white mb-1">{title}</h3>
-                <p className="text-sm text-white/90 leading-relaxed">{description}</p>
+                <p className="text-xs text-white/90 leading-relaxed">{description}</p>
             </div>
         </div>
     );

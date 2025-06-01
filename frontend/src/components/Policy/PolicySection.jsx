@@ -36,8 +36,8 @@ const policies = [
 
 export default function PolicySection() {
     return (
-        <section className="bg-gradient-to-b from-purple-900 to-black text-white px-4 py-12 flex flex-col space-y-4 justify-center">
-            <div className="max-w-3xl w-full space-y-6">
+        <section className="bg-gradient-to-b from-purple-900 to-black text-white px-4 py-12 flex flex-col item-center">
+            <div className="max-w-4xl w-full space-y-6">
                 <h2 className="text-3xl font-bold">OUR POLICIES</h2>
                 <div className="space-y-4">
                     {policies.map((policy) => (
