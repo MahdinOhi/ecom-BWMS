@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import LandingPage from './components/Landing/LandingPage';
 import LoginPage from './components/Login/LoginPage';
-import SignUpPage from './components/Signup/SignUpPage';
+import SignUpPage from './components/Signup/SignUpPage.jsx';
 import ForgotPassPage from './components/ForgotPass/ForgotPassPage';
 import ContactPage from './components/Contact/ContactPage';
 import AboutPage from './components/About/AboutPage';
@@ -28,7 +28,7 @@ const App = () => (
         <Route path="/about" element={<AboutPage />} />
         <Route path="/privacy-policy" element={<PolicySection />} />
         <Route path="/empty-cart" element={<EmptyCart />} />
-        <Route path ="*" element={<Error404 />} />
+        <Route path="*" element={<Error404 />} />
       </Route>
     </Routes>
   </Router>
