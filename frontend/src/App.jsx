@@ -12,9 +12,10 @@ import ShopPage from './components/Shop/ShopPage';
 import ProductPage from './components/Product/ProductPage';
 import PolicySection from './components/Landing/PolicySection';
 import EmptyCart from './components/Cart/EmptyCart';
-
 import WishList from './components/WishList/WishlistPage';
 import Error404 from './components/Error404/Error404Page';
+import AccountPage from './components/UserProfile/AccountPage';
+import './App.css'; // Assuming you have a CSS file for global styles
 
 const App = () => (
   <Router>
@@ -30,9 +31,9 @@ const App = () => (
         <Route path="/about" element={<AboutPage />} />
         <Route path="/privacy-policy" element={<PolicySection />} />
         <Route path="/empty-cart" element={<EmptyCart />} />
-       
-        <Route path ="/wishlist" element={<WishList />} />
-        <Route path ="*" element={<Error404 />} />
+        <Route path="/useracc" element={<AccountPage />} />
+        <Route path="/wishlist" element={<WishList />} />
+        <Route path="*" element={<Error404 />} />
       </Route>
     </Routes>
   </Router>
