@@ -1,7 +1,7 @@
 import React from 'react';
 import { Star } from 'lucide-react';
 
-const ProductListItem = ({ image, name, price, rating, ratingCount, size, colors, fabrics }) => (
+const ProductListItem = ({ id,image, name, price, rating, ratingCount, size, colors, fabrics }) => (
   <div className="rounded-xl p-4 shadow-[0_0_20px_5px_rgba(128,0,255,0.5)] backdrop-blur-sm bg-white/5 flex gap-8">
     <img
       src={image}
