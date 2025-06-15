@@ -1,12 +1,12 @@
 from rest_framework import serializers
 from .models import CustomUser
 
-class UserSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)
 
+class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = '__all__'
+        fields = ['username', 'email', 'password']
+        extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
         password = validated_data.pop('password')
@@ -14,3 +14,12 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = [
+            'userId', 'username', 'email', 'address',
+            'phone', 'isVerified', 'autosave', 'activityLog'
+        ]

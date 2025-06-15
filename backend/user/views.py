@@ -1,21 +1,35 @@
-from django.shortcuts import render
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import CustomUser
-from .serializers import UserSerializer
+from rest_framework_simplejwt.tokens import RefreshToken
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.views import View
+from .serializers import RegisterSerializer
 
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
+
+class ProtectedView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        return Response({
+            "msg": "You're authenticated!",
+            "user": {
+                "username": request.user.username,
+                "email": request.user.email,
+                "userId": str(request.user.userId)
+            }
+        })
 
 
-class RegisterView(APIView):
-    def post(self, request):
-        serializer = UserSerializer(data=request.data)
-        if serializer.is_valid():
-            user = serializer.save()
-            return Response({"message": "User created"}, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+def home(request):
+    return HttpResponse("Welcome to the User Home Page")
 
+
+
+
+
+def success_view(request):
+    return HttpResponse("You're successfully logged in!")
