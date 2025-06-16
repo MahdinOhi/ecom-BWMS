@@ -18,13 +18,13 @@ const InputField = ({ type, placeholder, icon }) => {
   };
 
   return (
-     <div className="relative text-sm mb-0">
+     <div className="relative text-sm mb-0 ">
       <input
         type={actualInputType}
         placeholder={placeholder}
         value={inputValue}
         onChange={handleInputChange}
-        className="w-full p-2.5 sm:p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent pr-12 text-sm sm:text-base transition-all duration-200"
+        className="w-full p-2.5 md:text-xs sm:p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent pr-12 text-sm sm:text-base transition-all duration-200"
       />
       {type === "password" && (
         <div className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer">
