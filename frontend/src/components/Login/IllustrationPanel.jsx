@@ -11,7 +11,7 @@ const IllustrationPanel = () => (
       <img
         src={logoImage}
         alt="Bro Where's My Stuff Logo"
-        className="absolute bottom-[-110px]  w-[170%] max-w-none object-contain"
+        className="absolute bottom-[-110px]  w-[160%]sm:w-[150%] md:w-[155%] lg:w-[170%] max-w-none object-contain"
       />
     </div>
   </div>
