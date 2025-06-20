@@ -5,6 +5,7 @@ import ProductSidebar from './ProductSidebar';
 import ProductPagination from './ProductPagination';
 import ViewToggle from './ViewToggle';
 import ProductListItem from './ProductListItem';
+import { getProducts, getProductsByCategory} from '../../api';
 
 
 const ProductPage = () => {
@@ -15,6 +16,8 @@ const ProductPage = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [filters, setFilters] = useState({
     sortBy: 'newest',
     priceRange: [0, 10000],
@@ -25,118 +28,40 @@ const ProductPage = () => {
 
   const productsPerPage = 12;
 
-  // Mock product data - replace with your actual data fetching
-  const mockProducts = [
-    {
-      id: 1,
-      image: "https://picsum.photos/id/292/400/300",
-      name: "Premium Leather Bag",
-      price: 2500,
-      rating: 4.5,
-      ratingCount: 125,
-      size: "Medium",
-      colors: ["#8B4513", "#000000"],
-      fabrics: "Genuine Leather",
-      category: "Bags & Purses",
-      categoryId: 1,
-      availability: "in-stock"
-    },
-    {
-      id: 2,
-      image: "https://picsum.photos/id/119/400/300",
-      name: "Designer Watch",
-      price: 4500,
-      rating: 4.8,
-      ratingCount: 89,
-      size: "One Size",
-      colors: ["#C0C0C0", "#FFD700"],
-      fabrics: "Stainless Steel",
-      category: "Watches",
-      categoryId: 4,
-      availability: "in-stock"
-    },
-    {
-      id: 3,
-      image: "https://picsum.photos/id/96/400/300",
-      name: "Stylish Sunglasses",
-      price: 1200,
-      rating: 4.3,
-      ratingCount: 67,
-      size: "One Size",
-      colors: ["#000000", "#8B4513"],
-      fabrics: "Plastic Frame",
-      category: "Sunglasses",
-      categoryId: 5,
-      availability: "in-stock"
-    },
-    {
-      id: 4,
-      image: "https://picsum.photos/id/367/400/300",
-      name: "Fashion Wallet",
-      price: 800,
-      rating: 4.2,
-      ratingCount: 45,
-      size: "Small",
-      colors: ["#8B4513", "#000000", "#654321"],
-      fabrics: "PU Leather",
-      category: "Wallets",
-      categoryId: 3,
-      availability: "limited"
-    },
-    {
-      id: 5,
-      image: "https://picsum.photos/id/234/400/300",
-      name: "Gold Necklace",
-      price: 3200,
-      rating: 4.7,
-      ratingCount: 92,
-      size: "One Size",
-      colors: ["#FFD700"],
-      fabrics: "18K Gold Plated",
-      category: "Accessories",
-      categoryId: 2,
-      availability: "in-stock"
-    },
-    {
-      id: 6,
-      image: "https://picsum.photos/id/158/400/300",
-      name: "Leather Belt",
-      price: 950,
-      rating: 4.4,
-      ratingCount: 78,
-      size: "Adjustable",
-      colors: ["#8B4513", "#000000"],
-      fabrics: "Genuine Leather",
-      category: "Belts",
-      categoryId: 6,
-      availability: "in-stock"
-    },
-    // Add more products as needed
-    ...Array.from({ length: 30 }, (_, i) => ({
-      id: 7 + i,
-      image: `https://picsum.photos/id/${200 + i}/400/300`,
-      name: `Product ${7 + i}`,
-      price: Math.floor(Math.random() * 5000) + 500,
-      rating: (Math.random() * 2 + 3).toFixed(1),
-      ratingCount: Math.floor(Math.random() * 200) + 10,
-      size: ["Small", "Medium", "Large", "One Size"][Math.floor(Math.random() * 4)],
-      colors: [["#FF0000", "#00FF00"], ["#0000FF", "#FFFF00"], ["#000000", "#FFFFFF"]][Math.floor(Math.random() * 3)],
-      fabrics: ["Cotton", "Leather", "Synthetic", "Metal"][Math.floor(Math.random() * 4)],
-      category: ["Bags & Purses", "Accessories", "Wallets", "Watches", "Sunglasses", "Belts"][Math.floor(Math.random() * 6)],
-      categoryId: Math.floor(Math.random() * 6) + 1,
-      availability: ["in-stock", "limited", "out-of-stock"][Math.floor(Math.random() * 3)]
-    }))
-  ];
+  // Fetch the products from the API
+   useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      setError(null);
+      
+      try {
+        let response;
+        
+        if (categoryId && categoryId !== 'all') {
+          // Fetch the products by category
+          response = await getProductsByCategory(categoryId);
+        } else {
+          // Fetch all products
+          response = await getProducts();
+        }
+        
+        const fetchedProducts = response.data;
+        setProducts(fetchedProducts);
+        setFilteredProducts(fetchedProducts);
+        
+      } catch (err) {
+        console.error('Error fetching products:', err);
+        setError('Failed to load products. Please try again.');
+        // Fallback to empty array if API fails
+        setProducts([]);
+        setFilteredProducts([]);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  useEffect(() => {
-    // Filter products based on category
-    let filtered = mockProducts;
-    if (categoryId && categoryId !== 'all') {
-      filtered = mockProducts.filter(product => product.categoryId === parseInt(categoryId));
-    }
-    setProducts(filtered);
-    setFilteredProducts(filtered);
-  }, [categoryId]);
+    fetchProducts();
+  }, [categoryId]); // re-run when the categoryId changes
 
   const handleFilterChange = (newFilters) => {
     setFilters(newFilters);
@@ -157,7 +82,23 @@ const ProductPage = () => {
       filtered = filtered.filter(product => product.availability === currentFilters.availability);
     }
 
-    // Apply sorting
+    // Apply color filter
+    if (currentFilters.selectedColors.length > 0) {
+      filtered = filtered.filter(product => 
+        product.colors && product.colors.some(color => 
+          currentFilters.selectedColors.includes(color)
+        )
+      );
+    }
+
+    // Apply size filter
+    if (currentFilters.selectedSizes.length > 0) {
+      filtered = filtered.filter(product => 
+        currentFilters.selectedSizes.includes(product.size)
+      );
+    }
+
+     // Apply sorting
     filtered.sort((a, b) => {
       switch (currentFilters.sortBy) {
         case 'price-low':
@@ -165,10 +106,10 @@ const ProductPage = () => {
         case 'price-high':
           return b.price - a.price;
         case 'rating':
-          return b.rating - a.rating;
+          return (b.rating || 0) - (a.rating || 0);
         case 'newest':
         default:
-          return b.id - a.id;
+          return (b.id || 0) - (a.id || 0);
       }
     });
 
@@ -176,13 +117,40 @@ const ProductPage = () => {
     setCurrentPage(1);
   };
 
-  // Pagination
+   // Pagination
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
-  return (
+  // Loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-transparent flex items-center justify-center">
+        <div className="text-white text-xl">Loading products...</div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="min-h-screen bg-transparent flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-red-500 text-xl mb-4">{error}</div>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+
+   return (
     <div className="min-h-screen bg-transparent">
       <div className="container ml-32 px-4 py-8">
         {/* Header */}
@@ -202,51 +170,57 @@ const ProductPage = () => {
           />
 
           {/* Products Grid */}
-          
           <div className="flex-1">
-            {viewMode === 'grid' ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 mb-8  " >
-                {currentProducts.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    image={product.image}
-                    name={product.name}
-                    price={product.price}
-                    rating={product.rating}
-                    ratingCount={product.ratingCount}
-                    size={product.size}
-                    colors={product.colors}
-                    fabrics={product.fabrics}
-                  />
-                ))}
+            {filteredProducts.length === 0 ? (
+              <div className="text-center text-white text-xl py-8">
+                No products found matching your criteria.
               </div>
             ) : (
-              <div className="space-y-4 mb-8">
-                {currentProducts.map((product) => (
-                  <ProductListItem
-                    key={product.id}
-                    image={product.image}
-                    name={product.name}
-                    price={product.price}
-                    rating={product.rating}
-                    ratingCount={product.ratingCount}
-                    size={product.size}
-                    colors={product.colors}
-                    fabrics={product.fabrics}
-                  />
-                ))}
-              </div>
-            )}
+              <>
+                {viewMode === 'grid' ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 mb-8">
+                    {currentProducts.map((product) => (
+                      <ProductCard
+                        key={product.id}
+                        image={product.image}
+                        name={product.name}
+                        price={product.price}
+                        rating={product.rating}
+                        ratingCount={product.ratingCount || product.rating_count}
+                        size={product.size}
+                        colors={product.colors}
+                        fabrics={product.fabrics}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="space-y-4 mb-8">
+                    {currentProducts.map((product) => (
+                      <ProductListItem
+                        key={product.id}
+                        image={product.image}
+                        name={product.name}
+                        price={product.price}
+                        rating={product.rating}
+                        ratingCount={product.ratingCount || product.rating_count}
+                        size={product.size}
+                        colors={product.colors}
+                        fabrics={product.fabrics}
+                      />
+                    ))}
+                  </div>
+                )}
 
-           
-            {/* Pagination */}
-            <ProductPagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={setCurrentPage}
-              totalProducts={filteredProducts.length}
-              productsPerPage={productsPerPage}
-            />
+                {/* Pagination */}
+                <ProductPagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={setCurrentPage}
+                  totalProducts={filteredProducts.length}
+                  productsPerPage={productsPerPage}
+                />
+              </>
+            )}
           </div>
         </div>
       </div>
