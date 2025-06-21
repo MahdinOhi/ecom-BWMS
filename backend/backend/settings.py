@@ -17,8 +17,6 @@ from datetime import timedelta
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
@@ -45,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'user',
+    'shop',
 ]
 
 MIDDLEWARE = [
@@ -132,7 +131,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOW_ALL_ORIGINS = True # Have to restrict this in production
+CORS_ALLOW_ALL_ORIGINS = True  # Have to restrict this in production
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -140,7 +139,6 @@ REST_FRAMEWORK = {
     )
 }
 
-from datetime import timedelta
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
@@ -152,5 +150,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'mahdinislamohi@gmail.com'  # <-- Replace with your Gmail address
-EMAIL_HOST_PASSWORD = 'ebjt qkkh srow emxd'  # <-- Replace with your Gmail App Password
+# <-- Replace with your Gmail address
+EMAIL_HOST_USER = 'mahdinislamohi@gmail.com'
+# <-- Replace with your Gmail App Password
+EMAIL_HOST_PASSWORD = 'ebjt qkkh srow emxd'
