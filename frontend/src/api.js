@@ -9,6 +9,11 @@ export const login = (data) => axios.post(`${API_BASE}/login/`, data);
 
 
 
+
+
+
+
+
 //Product APIs
 
 export const getProducts = (params = {}) => {
@@ -30,6 +35,7 @@ export const searchProducts = (searchQuery, params = {}) => {
   });
 };
 
+// this is for the category in the shop page 
 export const getCategories = () => {
   return axios.get(`${PRODUCT_API_BASE}/categories/`);
 };
@@ -43,3 +49,16 @@ export const getProductFilters = () => {
 export const getFilteredProducts = (filters) => {
   return axios.post(`${PRODUCT_API_BASE}/filter/`, filters);
 };
+
+// This is for the product categories in the sidebar
+export const getCategoriesWithCount = () => {
+  return axios.get(`${PRODUCT_API_BASE}/categories-with-count/`);
+};
+
+
+// Banner API
+export const getSaleBanner = () => {
+  return axios.get(`${PRODUCT_API_BASE}/banner/sale/`);
+};
+
+

@@ -1,8 +1,29 @@
 import React from 'react';
 import { ChevronDown, Grid, List } from 'lucide-react';
 import ViewToggle from './ViewToggle';
+import { useState, useEffect } from 'react';
+import { getCategoriesWithCount} from '../../api'
+
 
 const ProductSidebar = ({ filters, onFilterChange, totalProducts,viewMode,setViewMode }) => {
+
+
+  const [categoryList, setCategoryList] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await getCategoriesWithCount();
+        setCategoryList(res.data);
+      } catch (err) {
+        console.error("Failed to load categories with count:", err);
+      }
+    };
+    fetchCategories();
+  }, []);
+
+
+
   const handleSortChange = (sortBy) => {
     onFilterChange({ ...filters, sortBy });
   };
@@ -15,14 +36,7 @@ const ProductSidebar = ({ filters, onFilterChange, totalProducts,viewMode,setVie
     onFilterChange({ ...filters, availability });
   };
 
-  const productCategories = [
-    { id: 1, name: 'Bags & Purses', count: 12 },
-    { id: 2, name: 'Accessories', count: 8 },
-    { id: 3, name: 'Wallets', count: 6 },
-    { id: 4, name: 'Watches', count: 4 },
-    { id: 5, name: 'Sunglasses', count: 7 },
-    { id: 6, name: 'Belts', count: 5 }
-  ];
+  
 
   const featuredProducts = [
     { id: 1, name: 'Product 1', rating: 4.5 },
@@ -115,7 +129,7 @@ const ProductSidebar = ({ filters, onFilterChange, totalProducts,viewMode,setVie
       <div className="mb-6">
         <h3 className="text-white font-bold mb-3">Product Categories</h3>
         <div className="space-y-2">
-          {productCategories.map((category) => (
+          {categoryList.map((category) => (
             <div key={category.id} className="flex justify-between text-white text-sm">
               <span>{category.name}</span>
               <span className="text-purple-300">({category.count})</span>
